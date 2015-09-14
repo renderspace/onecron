@@ -1,0 +1,57 @@
+﻿
+1.) naredimo mapo "c:\Program files\One.Cron.4"
+2.) vanjo skopiramo datoteke iz ZIP-a
+3.) poženemo command prompt
+4.) prekamknemu se v prej pripravljeno mapo
+5.) poženemo: "c:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe One.Cron.4.exe"
+6.) pazimo, da je bila inštalacija uspešna. Nekje se mora izpisati:
+The Install phase completed successfully, and the Commit phase is beginning.
+
+7.) kreiramo novo bazo in novega uporabnika te baze.
+8.) v nobi bazi kreiramo tabelo:
+
+/****** Object:  Table [dbo].[cron_jobs]    Script Date: 01/22/2013 13:49:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[cron_jobs](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[admin_email_list] [varchar](1000) NOT NULL,
+	[crontab_entry] [varchar](255) NOT NULL,
+	[last_finished] [datetime] NULL,
+	[fully_qualified_class_name] [varchar](255) NOT NULL,
+	[last_error_message] [varchar](1000) NULL,
+	[last_error_date] [datetime] NULL,
+ CONSTRAINT [PK_cron_jobs] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+9.) v datoteki One.Cron.4.exe.config spremenimo connection string "cron", tako da bo lahko dostopal do zgoraj ustvarjene baze
+10.) v datoteki One.Cron.4.exe.config spremenimo <param name="File" value="c:\\logs\\cron2.log" /> 
+11.) V administrativni konzoli za servise štartamo servis One.Cron.4
+12.) preverimo v točki 10 nastavljen log, če se je servis štartal
+13.) servis ustavimo
+14.) iz obstoječega one.net produkcijskega folderja /bin skopiramo vse dll datoteke.
+15.) v zgoraj ustvarjeno tabelo napišemo:
+admin_email_list = vaš email
+crontab_entry = * * * * *
+last_finished = pustimo prazno (NULL)
+fully_qualified_class_name = One.Net.BLL.Publisher
+
+16.) v One.Cron.4.exe.config spremenimo connection string "MsSqlConnectionString" tako da bo enak kot na predogledu za One.NET (v web.config)
+17.) štartamo servis
+18.) preverimo v točki 10 nastavljen log, če se je servis štartal
+

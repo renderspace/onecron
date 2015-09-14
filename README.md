@@ -15,7 +15,7 @@ The Install phase completed successfully, and the Commit phase is beginning.
 7. Create a new database and a new user of the database.
 8. In the new database run the following script to create the table "cron_jobs":
 
-```sql
+``` sql
 /****** Object: Table dbo.cron_jobs Script Date: 01/22/2013 13:49:07 /
 SET ANSI_NULLS ON
 GO

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>One.Cron.API</id>
+        <version>1.1</version>
+        <title>One.Cron.API</title>
+        <authors>SamoF</authors>
+        <owners>samo4</owners>
+        <projectUrl>https://github.com/renderspace/onecron</projectUrl>
+        <releaseNotes>First public release</releaseNotes>
+        <tags>C# SQL Database MSSQL cron</tags>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Probably completely outdated NHibernate helper</description>
+        <copyright>Copyright © Renderspace 2015</copyright>
+    </metadata>
+    <files>
+        <file src="bin\Release\One.Cron.API.dll" target="lib\net45\One.Cron.API.dll" />
+    </files>
+</package>
